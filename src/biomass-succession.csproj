@@ -24,7 +24,22 @@
     <Description></Description>
   </PropertyGroup>
 
-  <ItemGroup>
+   <ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+	</ItemGroup>
+
+   <ItemGroup>
+        <ProjectReference Include="..\..\..\Library-Core\src\Core\Landis.Core.csproj" />
+        <ProjectReference Include="..\..\..\Library-Core\src\Implementation\Landis.Implementation.csproj" />
+        <ProjectReference Include="..\..\..\Library-Metadata\src\Metadata.csproj" />
+        <ProjectReference Include="..\..\..\Library-Climate\src\climate-generator.csproj" />
+        <ProjectReference Include="..\..\..\Library-Parameters\src\parameter-lib.csproj" />
+        <ProjectReference Include="..\..\..\Library-Universal-Cohort\universal-cohort.csproj" />
+        <ProjectReference Include="..\..\..\Library-Initial-Community\initial-community.csproj" />
+        <ProjectReference Include="..\..\..\Library-Succession\src\library-succession.csproj" />
+	</ItemGroup>
+  <!--
+   <ItemGroup>
     <PackageReference Include="Landis.Core" Version="3.0.1" />
 		<PackageReference Include="Landis.Core.Implementation" Version="3.0.1" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -50,4 +65,5 @@
       <HintPath>lib\Landis.Library.UniversalCohorts-v1.dll</HintPath>
     </Reference>
   </ItemGroup>
+        -->
 </Project>
