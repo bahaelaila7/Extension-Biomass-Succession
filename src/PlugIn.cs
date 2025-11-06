@@ -234,7 +234,7 @@ namespace Landis.Extension.Succession.Biomass
             if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
             {
                 PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Data.Age, disturbanceType);
-                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}.", eventArgs.Reduction, cohort.Data.Biomass);
+                PlugIn.ModelCore.UI.WriteLine("   BIOMASS SUCCESSION MORTALITY I: eventReduction={0:0.0}, new_cohort_biomass={1}, biomass*eventReduction={2:0.0}.", eventArgs.Reduction, cohort.Data.Biomass, cohort.Data.Biomass*eventArgs.Reduction);
             }
             double nonWoodyFraction = (double)cohort.ComputeNonWoodyBiomass(site) / (double)cohort.Data.Biomass;
             double woodyFraction = 1.0 - nonWoodyFraction;
@@ -381,6 +381,10 @@ namespace Landis.Extension.Succession.Biomass
 
         public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType, double propBiomass = 1.0)
         {
+            if (PlugIn.CalibrateMode && PlugIn.ModelCore.CurrentTime > 0)
+            {
+                PlugIn.ModelCore.UI.WriteLine(string.Format("  adding cohort: {0}@{1} by {2}, w {3}", species.Name, site, reproductionType, propBiomass));
+            }
             SiteVars.Cohorts[site].AddNewCohort(species, 1, CohortBiomass.InitialBiomass(species, SiteVars.Cohorts[site], site), 0, new System.Dynamic.ExpandoObject());
         }
         //---------------------------------------------------------------------
